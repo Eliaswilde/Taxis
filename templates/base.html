@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="{{ LANGUAGE_CODE }}"{% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
+{% load pages_tags mezzanine_tags i18n future staticfiles %}
+
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keywords" content="{% block meta_keywords %}{% endblock %}">
+<meta name="description" content="{% block meta_description %}{% endblock %}">
+<title>{% block meta_title %}{% endblock %}{% if settings.SITE_TITLE %} | {{ settings.SITE_TITLE }}{% endif %}</title>
+<link rel="shortcut icon" href="{% static "img/favicon.ico" %}">
+
+{% ifinstalled mezzanine.blog %}
+<link rel="alternate" type="application/rss+xml" title="RSS" href="{% url "blog_post_feed" "rss" %}">
+<link rel="alternate" type="application/atom+xml" title="Atom" href="{% url "blog_post_feed" "atom" %}">
+{% endifinstalled %}
+
+{% compress css %}
+<link rel="stylesheet" href="{% static "css/_bootstrap.css" %}">
+<link rel="stylesheet" href="{% static "css/style.css" %}">
+<link rel="stylesheet" href="{% static "css/_mezzanine.css" %}">
+<link rel="stylesheet" href="{% static "css/bootstrap_theme.css" %}">
+{% if LANGUAGE_BIDI %}
+<link rel="stylesheet" href="{% static "css/rtl.css" %}">
+{% endif %}
+{% ifinstalled cartridge.shop %}
+<link rel="stylesheet" href="{% static "css/cartridge.css" %}">
+{% if LANGUAGE_BIDI %}
+<link rel="stylesheet" href="{% static "css/cartridge.rtl.css" %}">
+{% endif %}
+{% endifinstalled %}
+{% block extra_css %}{% endblock %}
+{% endcompress %}
+
+{% compress js %}
+<script src="{% static "mezzanine/js/"|add:settings.JQUERY_FILENAME %}"></script>
+<script src="{% static "js/bootstrap.js" %}"></script>
+<script src="{% static "js/bootstrap-extras.js" %}"></script>
+{% block extra_js %}{% endblock %}
+{% endcompress %}
+<!--[if lt IE 9]>
+<script src="{% static "js/html5shiv.js" %}"></script>
+<script src="{% static "js/respond.min.js" %}"></script>
+<![endif]-->
+
+{% block extra_head %}{% endblock %}
+</head>
+
+<body id="{% block body_id %}body{% endblock %}">
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+<div class="container">
+<div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">{% trans "Toggle Navigation" %}</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+{#    {% if settings.SITE_TAGLINE %}<p class="navbar-text visible-lg">{{ settings.SITE_TAGLINE }}</p>{% endif %}#}
+{#    {% if settings.SITE_TITLE %}<a class="navbar-brand" href="/">{{ settings.SITE_TITLE }}</a>{% endif %}#}
+</div>
+
+<div class="navbar-collapse collapse">
+{#    {% search_form "all" %}#}
+    {% page_menu "pages/menus/dropdown.html" %}
+</div>
+</div>
+</div>
+
+<div class="companyinfo">
+    <div class = "container">
+        <div class="pettaxis">
+            <img src="{% static "img/pet_taxi.png"%}">
+            <ul>
+                <li>pet</li>
+                <li>taxis</li>
+            </ul>
+        </div>
+        <div class="right_pettaxis">
+            <ul>
+                <li>1800 738 829</li>
+                <li class="font_50">CALL 1800 PET TAXI</li>
+                <li class ="get_a_quote">
+                    <p>Get a quote</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="myCarousel" class="carousel slide">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <img src="{% static "img/slider-1.png" %}" alt="Mountain view">
+                <!-- <div class="fill" style="background-image:url('image/slider-1.png');background-size: cover;"></div>                 -->
+            </div>
+            <div class="item">
+                <img src="{% static "img/slider-1.png" %}" alt="Mountain view">
+            </div>
+            <div class="item">
+                <img src="{% static "img/slider-1.png" %}" alt="Mountain view">
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="icon-prev"></span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="icon-next"></span>
+        </a>
+    </div>
+<div class="container">
+<div class="row">
+
+<div class="col-md-3 left">
+    {% block left_panel %}
+    <div class="panel panel-default tree">{% page_menu "pages/menus/tree.html" %}</div>
+    {% endblock %}
+</div>
+
+<div class="col-lg-9">
+    {% block main %}{% endblock %}
+</div>
+</div>
+</div>
+<div class="highlight">
+        <div class="container">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-9">
+                <h2>Dogmovers Weekly interstate services</h2>
+                <p>We have several services a week from Sydney through northern NSW, via the Pacific and New England highways, to South East QLD. Plus a linking service up the QLD coast, via the Bruce Hwy as far as Townsville. Additionally our Sydney services do link with those of other transporters travelling down to Southern NSW, Canberra, Victoria and South Australia. </p>
+                <h2>Dogmovers Weekly interstate services</h2>
+                <p>Additionally to the above weekly services we cover NSW Central Western regions
+                    fortnightly and the QLD run is expanded to include Central Queensland as well as
+                    running further north, up to Cairns.</p>
+            </div>
+        </div>
+</div>
+<div class="container">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-9">
+            <div class="font_20">Also see</div>
+            <div class="col-lg-4">
+                <p><a href="">Brisbane & Coolangatta Airport transfers for you and your pet</a></p>
+                <img src="{% static "img/image1.png" %}">
+            </div>
+            <div class="col-lg-4">
+                <p><a href="">Regional & Interstate Pet Transport services</a></p>
+                <img src="{% static "img/image2.png" %}">
+            </div>
+            <div class="col-lg-4">
+                <p><a href="">Small Domestic Livestock and wildlife transport services</a></p>
+                <img src="{% static "img/image3.png" %}">
+            </div>
+        </div>
+        <hr>
+    </div>
+<footer>
+<div class="companyinfo">
+    <div class = "container">
+        <div class="row">
+            <div class="col-lg-4">
+                <p>Copyright &copy; Company 2013</p>
+            </div>
+            <div class="col-lg-8">
+                <div class="footer_content">
+                    <ul>
+                        <li>Terms & Conditions
+                        </li>
+                        <li>Brachycephalic Breed Policy
+                        </li>
+                        <li>Interstate Pet Transport
+                        </li>
+                        <li>Testimonials
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="pettaxis">
+            <img src="{% static "img/pet_taxi.png" %}">
+            <ul>
+                <li>pet</li>
+                <li>taxis</li>
+            </ul>
+        </div>
+        <div class="right_pettaxis">
+            <ul>
+                <li>1800 738 829</li>
+                <li class="font_50">CALL 1800 PET TAXI</li>
+                <li class ="get_a_quote">
+                    <p>Get a quote</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+        <div class="footer_menu">
+            {% page_menu "pages/menus/footer.html" %}
+        </div>
+    </div>
+</div>
+
+</footer>
+
+{#{% include "includes/footer_scripts.html" %}#}
+
+</body>
+</html>
